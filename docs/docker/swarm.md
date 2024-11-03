@@ -223,14 +223,6 @@ docker network create --driver=overlay --attachable traefik_network
 
 ### Split DNS Setup
 
-#### Externe DNS (öffentlich erreichbar)
-
-- **`traefik.lezit.de`**: Zeigt auf die öffentliche IP-Adresse deines Traefik-Load Balancers.
-- **`grafana.lezit.de`**: Zeigt auf die öffentliche IP-Adresse deines Traefik-Load Balancers.
-- **`influxdb.lezit.de`**: Zeigt auf die öffentliche IP-Adresse deines Traefik-Load Balancers.
-- **`unifi.lezit.de`**: Zeigt auf die öffentliche IP-Adresse deines Traefik-Load Balancers.
-- **`services.lezit.de`**: Zeigt auf die öffentliche IP-Adresse deines Load Balancers (optional).
-
 #### Interne DNS (nur innerhalb des Netzwerks erreichbar)
 
 - **`traefik.local.lezit.de`**: Zeigt auf die interne IP-Adresse deines Traefik-Load Balancers.
