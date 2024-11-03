@@ -60,6 +60,7 @@ nav:
     - Swarm Configuration: docker/swarm.md
     - Portainer BE: docker/portainer.md
     - Paperless NGX: docker/paperless.md
+    - Monitoring & Logging: docker/monitoring_logging.md
   - About:
     - About Me: about/about.md
     - Contact: about/contact.md
