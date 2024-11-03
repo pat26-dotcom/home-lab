@@ -1,11 +1,11 @@
-# Paperless Stack Documentation
+# Paperless NGX Stack Dokumentation
 
 ## Funktionsbeschreibung des Stacks
 
 Der **Paperless** Stack ermöglicht die digitale Verwaltung und Archivierung von Dokumenten durch die Automatisierung von Dokumenten-Scans, OCR (Optical Character Recognition) und die Organisation in einer durchsuchbaren Datenbank. Der Stack nutzt **Docker Swarm** zur Orchestrierung und **GlusterFS** als persistenten Speicher, wodurch eine hochverfügbare und skalierbare Umgebung geschaffen wird. **Portainer BE** dient als Verwaltungsoberfläche zur einfachen Handhabung und Überwachung der Container-Dienste über die drei Nodes hinweg.
 
-- **Offizielle Dokumentation:** [Paperless-ng Documentation](https://paperless-ngx.readthedocs.io/)
-- **Docker Hub:** [Paperless-ng on Docker Hub](https://hub.docker.com/r/paperlessngx/paperless-ngx)
+- **Offizielle Dokumentation:** [Paperless-ngx Documentation](https://paperless-ngx.readthedocs.io/)
+- **Docker Hub:** [Paperless-ngx on Docker Hub](https://hub.docker.com/r/paperlessngx/paperless-ngx)
 
 ### Image-Informationen
 
@@ -21,18 +21,6 @@ Der **Paperless** Stack ermöglicht die digitale Verwaltung und Archivierung von
 ### Optimierte `docker-compose.yml` für den Stack "Paperless"
 
 <https://github.com/pat26-dotcom/portainer-compose/blob/main/paperless/docker-compose.yml>
-
-### Kommentare und Empfehlungen
-
-- **Version:** Gibt die Version des Docker Compose-Formats an.
-- **Services:** Definiert die einzelnen Container-Dienste mit ihren Konfigurationen.
-  - **broker:** Redis-Server für Paperless.
-  - **db:** PostgreSQL-Datenbank für Paperless.
-  - **webserver:** Paperless Webserver mit den notwendigen Volumes und Umgebungsvariablen.
-- **Networks:** Definiert das Overlay-Netzwerk `paperless_network` für die interne Kommunikation der Dienste.
-- **Volumes:** Definiert die persistenten Speichervolumes unter Verwendung von GlusterFS.
-- **Deploy:** Enthält Deployment-Konfigurationen wie Replikate, Ressourcenlimits und Restart-Policies.
-- **Healthcheck:** Überprüft die Verfügbarkeit des Webservers und stellt sicher, dass fehlerhafte Container neu gestartet werden.
 
 **Empfehlung zu Abhängigkeiten:**
 
