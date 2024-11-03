@@ -1,10 +1,10 @@
-# Ubuntu Installation und Konfiguration (Swarm-Cluster)
+# Installation und Konfiguration von Ubuntu für einen Docker Swarm-Cluster
 
-## wichtige Links
+Benötigte Tools:
 
 - **Glances** is an open-source system cross-platform monitoring tool: [GitHub - nicolargo/glances: Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems.](https://github.com/nicolargo/glances)
 
-Hosts
+## Hosts
 
 | Name  | IP         | CPU | RAM | HDD | Beschreibung |
 | ----- | ---------- | --- | --- | --- | ------------ |
