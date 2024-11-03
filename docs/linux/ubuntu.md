@@ -10,7 +10,7 @@ Hosts
 | ----- | ---------- | --- | --- | --- | ------------ |
 | node1 | 10.11.2.51 | 1   | 8   | 40  |              |
 | node2 | 10.11.2.52 | 1   | 8   | 40  |              |
-| node3 | 10.11.2.53 | 1   | 8   | 40  |              |
+| node3 | 10.11.2.53 | 1   | 8   | 40  | Docker Host mit NVIDIA T400 GPU |
 
 ## Netzwerkkonfiguration
 
@@ -55,7 +55,9 @@ Bei vorhanden sein einer DHCP Adresse, folgenden Befehl ausführen:
 sudo ip addr del 10.11.2.105/24 dev ens33
 ```
 
+```bash
 docker swarm join --token SWMTKN-1-5fefin3wx5rhk1mii681l21rmd9eh2geawgvfsufh0qtmnrpay-8edqqevjg8jc5sccv33boz3ed 10.11.2.51:2377
+```
 
 10.11.2.51  swarm-node1
 10.11.2.52  swarm-node2

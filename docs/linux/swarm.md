@@ -1,4 +1,4 @@
-# Docker Swarm Umgebung Dokumentation: Traefik, Grafana, InfluxDB und UniFi im Split DNS Modus auf VMware vSphere 8 mit GlusterFS und HAProxy
+# Docker Swarm Umgebung Dokumentation: 
 
 ## Einleitung
 
@@ -11,8 +11,6 @@ Diese Dokumentation beschreibt die Einrichtung einer hochverfügbaren Docker Swa
 - **UniFi** für Netzwerkinfrastrukturverwaltung
 
 Die Umgebung wird auf **virtuellen Servern** in einer **VMware vSphere 8** Umgebung betrieben. Zusätzlich wird **GlusterFS** als verteiltes Dateisystem für die persistente Speicherung der Daten verwendet. Die Konfiguration erfolgt im **Split DNS Modus**, sodass Dienste sowohl intern (`*.local.lezit.de`) als auch extern (`*.lezit.de`) erreichbar sind. Zudem wird beschrieben, wie ein **hochverfügbarer Zugriffspunkt** eingerichtet wird, um den Zugang auch bei Ausfall einzelner Hosts sicherzustellen.
-
----
 
 ## Voraussetzungen
 
@@ -46,36 +44,48 @@ Die Installation der **VMware Tools** auf den Docker Swarm Nodes ist essenziell 
 
 2. **VM in der VM betreiben:**
    - **Für Linux-basierte VMs (Ubuntu 24.04.1 LTS):**
+
      ```bash
      sudo apt-get update
      sudo apt-get install open-vm-tools -y
      sudo systemctl enable --now open-vm-tools.service
      ```
+
      - **Falls Fehler auftreten (z.B. Alias oder symbolischer Link):**
        1. **Überprüfe den Dienststatus:**
+
           ```bash
           sudo systemctl status open-vm-tools.service
           ```
+
        2. **Starte den Dienst manuell:**
+
           ```bash
           sudo systemctl start open-vm-tools.service
           ```
+
        3. **Aktiviere den Dienst beim Systemstart:**
+
           ```bash
           sudo systemctl enable open-vm-tools.service
           ```
+
        4. **Falls weiterhin Probleme auftreten:**
           - **Deinstalliere und installiere die Open-VM-Tools neu:**
+
             ```bash
             sudo apt-get remove --purge open-vm-tools -y
             sudo apt-get autoremove -y
             sudo apt-get install open-vm-tools -y
             sudo systemctl enable --now open-vm-tools.service
             ```
+
           - **Prüfe die Logs für weitere Informationen:**
+
             ```bash
             sudo journalctl -u open-vm-tools.service -b
             ```
+
    - **Für Windows-basierte VMs:**
      - Navigiere im Explorer zur gemounteten CD-ROM (meist `D:`).
      - Führe `setup.exe` aus und folge den Installationsanweisungen.
@@ -83,9 +93,11 @@ Die Installation der **VMware Tools** auf den Docker Swarm Nodes ist essenziell 
 
 3. **Überprüfung der Installation:**
    - **Für Linux:**
+
      ```bash
      sudo systemctl status open-vm-tools.service
      ```
+
      - Sollte den Status `active (running)` anzeigen.
    - **Für Windows:**
      - Überprüfe den Task-Manager auf den Prozess **vmtoolsd.exe**.
@@ -109,6 +121,7 @@ Die Installation der **VMware Tools** auf den Docker Swarm Nodes ist essenziell 
 
 1. **GlusterFS auf allen Swarm Nodes installieren:**
    - **Für Ubuntu 22.04 LTS und höher:**
+
      ```bash
      sudo apt-get update
      sudo apt-get install -y glusterfs-server
@@ -123,50 +136,66 @@ Die Installation der **VMware Tools** auf den Docker Swarm Nodes ist essenziell 
        - `swarm-node3`: `10.11.2.53`
    - **Nodes zum Cluster hinzufügen:**
      - Auf `swarm-node1`:
+
        ```bash
        sudo gluster peer probe swarm-node2
        sudo gluster peer probe swarm-node3
        ```
+
      - Überprüfe die Cluster-Mitglieder:
+
        ```bash
        sudo gluster peer status
        ```
+
    - **Replikationsvolume erstellen:**
      - Erstelle ein Verzeichnis auf jedem Node für das Volume:
+
        ```bash
        sudo mkdir -p /glusterfs/volume1
        ```
+
      - Erstelle das replizierte Volume:
+
        ```bash
        sudo gluster volume create gv0 replica 3 swarm-node1:/glusterfs/volume1 swarm-node2:/glusterfs/volume1 swarm-node3:/glusterfs/volume1 force
        ```
+
      - Starte das Volume:
+
        ```bash
        sudo gluster volume start gv0
        ```
+
      - Überprüfe den Volume-Status:
+
        ```bash
        sudo gluster volume status gv0
        ```
 
 3. **Docker Volume Plugin für GlusterFS installieren:**
    - **Installation des Plugins:**
+
      ```bash
      docker plugin install gluster/docker-volume-glusterfs
      ```
+
    - **Aktivieren des Plugins:**
+
      ```bash
      docker plugin enable gluster/docker-volume-glusterfs
      ```
 
 4. **Docker Volume mit GlusterFS erstellen:**
    - Beispiel für das Erstellen eines Docker Volumes mit dem GlusterFS Plugin:
+
      ```bash
      docker volume create --driver gluster/docker-volume-glusterfs --name gv0 \
        -o glusterfs-volume=gv0 \
        -o glusterfs-server=swarm-node1:swarm-node2:swarm-node3 \
        -o glusterfs-volume-type=replica
      ```
+
    - **Hinweis:** Stelle sicher, dass die Namen und Adressen der Nodes korrekt sind.
 
 5. **Integration von GlusterFS in Docker Compose Stacks:**
@@ -174,12 +203,14 @@ Die Installation der **VMware Tools** auf den Docker Swarm Nodes ist essenziell 
 
 6. **Testen der GlusterFS Integration:**
    - Starte die Stacks und überprüfe, ob die Daten korrekt in GlusterFS gespeichert werden.
+
      ```bash
      docker stack deploy -c traefik.yml traefik
      docker stack deploy -c grafana.yml grafana
      docker stack deploy -c influxdb.yml influxdb
      docker stack deploy -c unifi.yml unifi
      ```
+
    - Überprüfe die Verzeichnisse auf den GlusterFS Nodes (`/mnt/glusterfs/...`), um sicherzustellen, dass die Daten dort abgelegt werden.
 
 #### Vorteile der Nutzung von GlusterFS
