@@ -1,5 +1,6 @@
 site_name: My Documentations
-site_url: https://mydomain.org/mysite
+site_url: https://pat26-dotcom.github.io/website/
+repo_url: https://github.com/pat26-dotcom/website
 theme:
   palette: 
 
