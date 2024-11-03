@@ -43,8 +43,8 @@ plugins:
   - tags:
       tags_file: tags.md
   - blog
-  #- git-revision-date-localized:
-  #    enable_creation_date: true
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -63,6 +63,12 @@ nav:
     - Swarm Configuration: docker/swarm.md
     - Portainer BE: docker/portainer.md
     - Paperless NGX: docker/paperless.md
+    - Jellyfin: docker/jellyfin.md
+    - Grafana: docker/grafana.md
+    - InfluxDB: docker/influxdb.md
+    - Homepage: docker/homepage.md
+    - Node-Red: docker/node-red.md
+    - Stirling-PDF: docker/stirling-pdf.md
     - Monitoring & Logging: docker/monitoring_logging.md
   - About:
     - About Me: about/about.md
