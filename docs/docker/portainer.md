@@ -5,10 +5,6 @@
 
 - **Glances** is an open-source system cross-platform monitoring tool: [GitHub - nicolargo/glances: Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems.](https://github.com/nicolargo/glances)
 
-Portainer BE License for 3 Nodes
-
-`3-n6nMpmh+73S9X2XBQfr4hpU+mlrY9eDTHDAn9J8SWeBEmwbatuuFJHO8AJqoKv0gz7FQwf1MJTaS4nbleClkoEvcqqga9N+fbLJUbL7ygf5zzBz4egm+NUS+Q2tVcZTvkg==`
-
 Hosts
 
 | Name  | IP         | CPU | RAM | HDD | Beschreibung | 
