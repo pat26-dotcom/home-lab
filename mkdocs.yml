@@ -56,9 +56,10 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Docker:
+  - Docker Stacks:
     - Swarm Configuration: docker/swarm.md
-    - Portainer Installation: docker/portainer.md
+    - Portainer BE: docker/portainer.md
+    - Paperless NGX: docker/paperless.md
   - About:
     - About Me: about/about.md
     - Contact: about/contact.md
