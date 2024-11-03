@@ -59,17 +59,20 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Linux:
+    - Swarm Configuration: linux/swarm.md
+    - Ubuntu: linux/ubuntu.md/
   - Docker Stacks:
-    - Swarm Configuration: docker/swarm.md
-    - Portainer BE: docker/portainer.md
-    - Paperless NGX: docker/paperless.md
-    - Jellyfin: docker/jellyfin.md
     - Grafana: docker/grafana.md
-    - InfluxDB: docker/influxdb.md
     - Homepage: docker/homepage.md
-    - Node-Red: docker/node-red.md
-    - Stirling-PDF: docker/stirling-pdf.md
+    - InfluxDB: docker/influxdb.md
+    - Jellyfin: docker/jellyfin.md
     - Monitoring & Logging: docker/monitoring_logging.md
+    - Node-Red: docker/node-red.md
+    - Paperless NGX: docker/paperless.md
+    - Portainer BE: docker/portainer.md
+    - Stirling-PDF: docker/stirling-pdf.md
+
   - About:
     - About Me: about/about.md
     - Contact: about/contact.md

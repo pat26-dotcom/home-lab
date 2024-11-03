@@ -1,6 +1,5 @@
 # Docker Swarm Umgebung Dokumentation: Traefik, Grafana, InfluxDB und UniFi im Split DNS Modus auf VMware vSphere 8 mit GlusterFS und HAProxy
 
-
 ## Einleitung
 
 Diese Dokumentation beschreibt die Einrichtung einer hochverfügbaren Docker Swarm Umgebung mit den folgenden Stacks:
