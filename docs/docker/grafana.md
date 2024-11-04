@@ -59,6 +59,8 @@ Diese Limits sollten basierend auf der tatsächlichen Nutzung und den spezifisch
 
 GlusterFS wird als persistenter Speicher für Grafana verwendet. Das Docker Plugin [glusterfs-volume](https://github.com/chrisbecke/glusterfs-volume) ist installiert und erstellt Volumes automatisch im Verzeichnis `/mnt/glusterfs`. Der verwendete Treibername lautet `glusterfs`.
 
+!!! note annotate "Gluster FS"
+
 #### Volume Namenskonzept
 
 - **Format**: `%STACKNAME%_%VOLUMENAME%`
