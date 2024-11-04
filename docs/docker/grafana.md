@@ -76,37 +76,39 @@ GlusterFS wird als persistenter Speicher für Grafana verwendet. Das Docker Plug
 
 Verwenden Sie ein durchgängiges und eindeutiges Namensschema, um Secrets eindeutig zu identifizieren. Ein empfohlenes Schema ist:
 
-```bash
-<stackname>_<service>_<secretname>
-```
-
-**Beispiel**:
-
-- `grafana_grafana_admin_password`
-
-### Erstellung von Secrets
-
-1. Erstellen Sie die Secret-Datei:
+!!! info annotate "Secrets"
 
     ```bash
-    echo "sicheres_passwort" | docker secret create grafana_grafana_admin_password -
+    <stackname>_<service>_<secretname>
     ```
 
-2. Referenzieren Sie das Secret in der `docker-compose.yml`:
+    **Beispiel**:
 
-    ```yaml
-    secrets:
-      - grafana_grafana_admin_password
-    ```
+    - `grafana_grafana_admin_password`
 
-3. Aktualisieren Sie die `environment` Variablen, um das Secret zu verwenden:
+    **Erstellung von Secrets**
 
-    ```yaml
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD_FILE=/run/secrets/grafana_admin_password
-    secrets:
-      - grafana_grafana_admin_password
-    ```
+    1. Erstellen Sie die Secret-Datei:
+
+        ```bash
+        echo "sicheres_passwort" | docker secret create grafana_grafana_admin_password -
+        ```
+
+    2. Referenzieren Sie das Secret in der `docker-compose.yml`:
+
+        ```yaml
+        secrets:
+          - grafana_grafana_admin_password
+        ```
+
+    3. Aktualisieren Sie die `environment` Variablen, um das Secret zu verwenden:
+
+        ```yaml
+        environment:
+          - GF_SECURITY_ADMIN_PASSWORD_FILE=/run/secrets/grafana_admin_password
+        secrets:
+          - grafana_grafana_admin_password
+        ```
 
 ## Netzwerk
 
