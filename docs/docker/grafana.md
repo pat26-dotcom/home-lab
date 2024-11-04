@@ -15,8 +15,6 @@ Weitere Informationen finden Sie in der offiziellen Dokumentation:
 |--------------------|------------------|---------------------|
 | grafana/grafana    | 11.2.2-ubuntu    | 2024-04-27          |
 
----
-
 ## YAML-Datei Optimierung
 
 Die folgende `docker-compose.yml` Datei für den Grafana Stack wurde optimiert, um Fehler zu beheben, doppelte Einträge zu entfernen und den Best Practices von Docker Swarm zu entsprechen. Alle unnötigen Parameter wurden entfernt, die Lesbarkeit wurde verbessert und relevante Bereiche wurden kommentiert.
@@ -47,11 +45,6 @@ Basierend auf den allgemeinen Best Practices und den Empfehlungen der Grafana En
 | grafana | 1.0  | 1G    |
 
 Diese Limits sollten basierend auf der tatsächlichen Nutzung und den spezifischen Anforderungen von Grafana angepasst werden.
-
-### Best Practices für Docker Swarm
-
-- **Setzen von Limits und Reservierungen**: Definieren Sie sowohl `limits` als auch `reservations`, um sicherzustellen, dass der Grafana Dienst genügend Ressourcen hat und keine anderen Dienste übermäßig Ressourcen beanspruchen.
-- **Monitoring**: Überwachen Sie die Ressourcennutzung kontinuierlich, um Engpässe frühzeitig zu erkennen und Anpassungen vorzunehmen.
 
 ## Storage
 
@@ -89,21 +82,21 @@ Verwenden Sie ein durchgängiges und eindeutiges Namensschema, um Secrets eindeu
 
 **Beispiel**:
 
-- `grafana_admin_password`
+- `grafana_grafana_admin_password`
 
 ### Erstellung von Secrets
 
 1. Erstellen Sie die Secret-Datei:
 
     ```bash
-    echo "sicheres_passwort" | docker secret create grafana_admin_password -
+    echo "sicheres_passwort" | docker secret create grafana_grafana_admin_password -
     ```
 
 2. Referenzieren Sie das Secret in der `docker-compose.yml`:
 
     ```yaml
     secrets:
-      - grafana_admin_password
+      - grafana_grafana_admin_password
     ```
 
 3. Aktualisieren Sie die `environment` Variablen, um das Secret zu verwenden:
@@ -112,7 +105,7 @@ Verwenden Sie ein durchgängiges und eindeutiges Namensschema, um Secrets eindeu
     environment:
       - GF_SECURITY_ADMIN_PASSWORD_FILE=/run/secrets/grafana_admin_password
     secrets:
-      - grafana_admin_password
+      - grafana_grafana_admin_password
     ```
 
 ## Netzwerk
