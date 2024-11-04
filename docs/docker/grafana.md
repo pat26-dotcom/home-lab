@@ -66,18 +66,16 @@ GlusterFS wird als persistenter Speicher für Grafana verwendet. Das Docker Plug
     - **Format**: `%STACKNAME%_%VOLUMENAME%`
     - **Beispiel**: Für den Stack `grafana` und das Volume `data` wird der Mountpoint `/mnt/glusterfs/grafana_data` verwendet.
 
-#### YAML-Konfiguration
+    #### YAML-Konfiguration
 
-```yaml
-volumes:
-  grafana_data:
-    driver: glusterfs
-    driver_opts:
-      voluri: "localhost:/gv0"
-      mountpoint: "/mnt/glusterfs/grafana_data"
-```
-
-*Hinweis*: Verwenden Sie nur das Suffix des Volumennamens ohne den Stack- oder Containernamen.
+    ```yaml
+    volumes:
+      grafana_data:
+        driver: glusterfs
+        driver_opts:
+          voluri: "localhost:/gv0"
+          mountpoint: "/mnt/glusterfs/grafana_data"
+    ```
 
 ## Secrets
 
