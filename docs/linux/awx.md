@@ -76,8 +76,6 @@ ansible-playbook -i inventory/hosts.yml install-awx.yml
 
 ## 2. Docker Swarm Cluster mit GlusterFS und Portainer
 
-### Ziel
-
 Bereitstellung eines hochverfügbaren Swarm-Clusters mit persistentem Speicher und GUI-Verwaltung.
 
 ### Architektur
@@ -88,7 +86,7 @@ Bereitstellung eines hochverfügbaren Swarm-Clusters mit persistentem Speicher u
 | swarm-node2 | 10.11.2.52     | Manager + Worker   |
 | swarm-node3 | 10.11.2.53     | Manager + Worker   |
 
-### Voraussetzungen
+### Voraussetzung
 
 - Ubuntu 24.04 auf allen Nodes
 - SSH-Key-Zugriff von einem Ansible-Host
